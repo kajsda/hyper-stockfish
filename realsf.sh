@@ -7,7 +7,7 @@ make -v &> /dev/null ||apt install -y make
 g++ -v &> /dev/null || install -y build-essential
 
 # download the Stockfish source code
-wget https://github.com/mcostalba/Stockfisharchive/master.zip
+wget https://github.com/official-stockfish/Stockfish/master.zip
 unzip master.zip
 cd Stockfish-master/src
 
@@ -22,9 +22,9 @@ cd Stockfish-master/src
 
 # build the binary for CPU with popcnt instruction (e.g. Intel Sandy Bridge)
 if [ "$(g++ -Q -march=native --help=target | grep mpopcnt | grep enabled)" ] ; then
-  make profile-build ARCH=x86-64-modern COMP=gcc
+  make profile-build ARCH=x86-64-bmi2 COMP=gcc
   strip stockfish
-  mv stockfish ../../stockfish_x64_modern
+  mv stockfish ../../stockfish_x64_bmi2
   make clean
 fi
 
