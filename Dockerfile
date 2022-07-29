@@ -6,8 +6,7 @@ COPY requirements.txt .
 
 # If you want to run any other commands use "RUN" before.
  #install wanted packages
-RUN apt update > aptud.log && apt install -y wget python3 python3-pip p7zip-full git > apti.log
-RUN python3 -m pip install --no-cache-dir -r requirements.txt > pip.log
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget unzip python3 python3-pip p7zip
 
 #syzygy
 #RUN git clone https://github.com/hyperbotauthor/syzygy.git
@@ -18,6 +17,8 @@ RUN 7zr e cubail.7z && rm cubail.7z
 
 RUN wget --no-check-certificate -nv "https://gitlab.com/OIVAS7572/Goi5.1.bin/-/raw/main/Goi5.1.bin.7z" -O Goi5.1.7z
 RUN 7zr e Goi5.1.7z && rm Goi5.1.7z
+
+RUN python3 -m pip install --no-cache-dir -r requirements.txt > pip.log
 
 #engine section
 RUN bash realsf.sh  
